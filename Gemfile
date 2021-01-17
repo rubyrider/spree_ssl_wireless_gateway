@@ -8,4 +8,8 @@ end
 gem 'spree', github: 'spree/spree', branch: 'master'
 gem 'rails-controller-testing'
 
+unless ENV['WITHOUT_SPREE_AUTH_DEVISE'] == 'true'
+  gem 'spree_auth_devise', github: 'spree/spree_auth_devise', branch: 'master'
+end
+
 gemspec

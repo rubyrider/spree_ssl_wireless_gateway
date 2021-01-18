@@ -1,5 +1,4 @@
-module SpreeSslWirelessGateway
-  class AllPaymentMethods < ::Spree::PaymentMethod
+  class AllPaymentMethod < ::Spree::PaymentMethod
     preference :merchant_id, :string
     preference :secret, :string
     preference :product_category, :string
@@ -10,7 +9,7 @@ module SpreeSslWirelessGateway
     preference :server, :string, default: 'https://sandbox.sslcommerz.com'.freeze
 
     def provider_class
-      SpreeSslWirelessGateway::PaymentMethod
+      ::SpreeSslWirelessGateway::PaymentMethod
     end
     
     def payment_source_class
@@ -21,4 +20,4 @@ module SpreeSslWirelessGateway
       raise ::NotImplementedError, 'You must implement cancel method for this payment method.'
     end
   end
-end
+

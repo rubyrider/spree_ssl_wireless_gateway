@@ -1,14 +1,13 @@
 module SpreeSslWirelessGateway
-  class GatewaySupport < Gateway
-    self.live_url = 'https://securepay.sslcommerz.com'.freeze
-    
-    self.supported_countries = %w(BD)
-    self.default_currency    = 'BDT'
-    self.money_format        = :cents
-    self.supported_cardtypes = %i[visa master american_express]
-    
-    self.homepage_url = 'https://sandbox.sslcommerz.com/'
-    self.display_name = 'SSL Wireless Gateway'
+  class GatewaySupport < ::Spree::Gateway
+    preference :supported_countries, :string, default: %w(BD)
+    preference :default_currency, :string, default: 'BDT'
+    preference :money_format, :string, default: :cents
+    preference :homepage_url, :string, default: 'https://sandbox.sslcommerz.com/'
+    preference :sanbox_url, :string, default: 'https://sandbox.sslcommerz.com/'
+    preference :test_mode, :boolean, default: true
+    preference :server, :string, default: 'https://securepay.sslcommerz.com'.freeze
+    preference :display_name, :string, default: 'SSL Wireless Gateway'.freeze
     
     def authorize
     

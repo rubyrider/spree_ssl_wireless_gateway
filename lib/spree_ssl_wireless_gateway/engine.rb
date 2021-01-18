@@ -1,7 +1,9 @@
 module SpreeSslWirelessGateway
   class Engine < Rails::Engine
     require 'spree/core'
+
     isolate_namespace Spree
+    
     engine_name 'spree_ssl_wireless_gateway'
 
     # use rspec for tests
@@ -16,5 +18,11 @@ module SpreeSslWirelessGateway
     end
 
     config.to_prepare(&method(:activate).to_proc)
+    
+    initializer 'spree.ssl_wireless.payment_methods', after: 'spree.register.payment_methods' do |app|
+      app.config.spree.payment_methods += [
+          AllPaymentMethod
+      ]
+    end
   end
 end

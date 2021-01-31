@@ -1,0 +1,17 @@
+<table class="table table-bordered table-active">
+  <%# params.each do |attr, key| %>
+<!--    <tr >-->
+<!--     <td><%#= attr %></td>-->
+<!--     <td><%#= key %></td>-->
+<!--    </tr>-->
+  <%# end %>
+</table>
+
+<%= form_tag spree.checkout_path, method: :patch do %>
+  <%= hidden_field_tag :authenticity_token, session[:_csrf_token] %>
+  <% params.each do |attr, key| %>
+   <%= hidden_field_tag attr, key %>
+  <% end %>
+
+  <%= submit_tag 'Submit' %>
+<% end %>

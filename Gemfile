@@ -12,4 +12,6 @@ unless ENV['WITHOUT_SPREE_AUTH_DEVISE'] == 'true'
   gem 'spree_auth_devise', github: 'spree/spree_auth_devise', branch: 'master'
 end
 
+gem 'faraday'
+
 gemspec

@@ -1,7 +1,7 @@
 module SpreeSslWirelessGateway
   class Engine < Rails::Engine
     require 'spree/core'
-
+    
     isolate_namespace Spree
     
     engine_name 'spree_ssl_wireless_gateway'
@@ -21,7 +21,7 @@ module SpreeSslWirelessGateway
     
     initializer 'spree.ssl_wireless.payment_methods', after: 'spree.register.payment_methods' do |app|
       app.config.spree.payment_methods += [
-          AllPaymentMethod
+          ::Spree::Gateway::SslWireless
       ]
     end
   end

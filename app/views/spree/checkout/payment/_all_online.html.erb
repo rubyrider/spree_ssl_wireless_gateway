@@ -24,6 +24,14 @@
   </script>
 <% end %>
 
+<script type="text/javascript">
+    $('#sslczPayBtn').on('click', function (e) {
+        e.preventDefault()
+
+        return false;
+    })
+</script>
+
 <button class="pay-with-sslw btn btn-outline-light btn-lg btn-primary" id="sslczPayBtn"
         postdata=""
         order="<%= @order.number %>"

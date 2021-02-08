@@ -13,6 +13,7 @@ class PaymentProcessor
     @shipment     = order&.shipments&.last
   end
   
+  
   def as_json(options = nil)
     {
         store_id:         @payment_method.preferences[:merchant_id],

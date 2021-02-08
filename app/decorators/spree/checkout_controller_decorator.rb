@@ -22,11 +22,17 @@ module Spree
       order_params = SslWirelessFeedback.call(params).to_oder_param
       params[:order] = order_params[:order]
       params[:payment_source] = order_params[:payment_source]
-
+      payment_method_id = params[:value_b]
+      validation_id = params[:val_id]
+      
+      valid = SslWirelessService.new.valid?(validation_id, payment_method_id)
+      
       raise ::Spree::Core::GatewayError, 'Insufficient fund, please try again' if params[:state] == 'fail'
       raise ::Spree::Core::GatewayError, 'Payment has been cancelled, we hope you return soon' if params[:state] == 'cancel'
+      raise ::Spree::Core::GatewayError, 'Payment has been rejected , please try again soon' if !valid
 
       Rails.logger.debug("[PROCESS_PAYMENT]: #{params}")
+      
       @order.tap(&:process_payments!)
     end
   end

@@ -10,3 +10,4 @@ module SpreeSslWirelessGateway
     preference :display_name, :string, default: 'SSL Wireless Gateway'.freeze
   end
 end
+

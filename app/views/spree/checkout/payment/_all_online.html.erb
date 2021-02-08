@@ -1,14 +1,28 @@
-<script type="text/javascript">
-    (function (window, document) {
-        var loader = function () {
-            var script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];
-            script.src = "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7);
-            tag.parentNode.insertBefore(script, tag);
-        };
+<% if preferences[:test_mode] %>
+  <script type="text/javascript">
+      (function (window, document) {
+          var loader = function () {
+              var script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];
+              script.src = "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7);
+              tag.parentNode.insertBefore(script, tag);
+          };
 
-        window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
-    })(window, document);
-</script>
+          window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+      })(window, document);
+  </script>
+<% else %>
+  <script type="text/javascript">
+      (function (window, document) {
+          var loader = function () {
+              var script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];
+              script.src = "https://seamless-epay.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7);
+              tag.parentNode.insertBefore(script, tag);
+          };
+
+          window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+      })(window, document);
+  </script>
+<% end %>
 
 <button class="pay-with-sslw" id="sslczPayBtn"
         postdata=""

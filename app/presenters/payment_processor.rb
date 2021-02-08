@@ -38,7 +38,7 @@ class PaymentProcessor
         ship_name:        shipment&.shipping_method&.name,
         ship_add1:        order&.ship_address&.address1&.presence,
         ship_add2:        order&.ship_address&.address2&.presence,
-        ship_city:        order&.ship_address&.state&.name&.presence,
+        ship_city:        order&.ship_address&.city&.presence,
         ship_state:       order&.ship_address&.city&.presence,
         ship_postcode:    order&.ship_address&.zipcode&.presence,
         ship_country:     order&.ship_address&.country&.name&.presence,

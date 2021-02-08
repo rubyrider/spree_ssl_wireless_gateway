@@ -8,27 +8,5 @@ module SpreeSslWirelessGateway
     preference :test_mode, :boolean, default: true
     preference :server, :string, default: 'https://securepay.sslcommerz.com'.freeze
     preference :display_name, :string, default: 'SSL Wireless Gateway'.freeze
-    
-    def authorize
-    
-    end
-    
-    def purchase
-    
-    end
-    
-    def capture
-    
-    end
-    
-    def void
-    
-    end
-    
-    def credit
-    
-    end
-    
-    private
   end
 end

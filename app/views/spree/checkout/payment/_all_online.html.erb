@@ -24,17 +24,19 @@
   </script>
 <% end %>
 
-<script type="text/javascript">
-    $('#sslczPayBtn').on('click', function (e) {
-        e.preventDefault()
-
-        return false;
-    })
-</script>
-
-<button class="pay-with-sslw btn btn-outline-light btn-lg btn-primary" id="sslczPayBtn"
-        postdata=""
-        order="<%= @order.number %>"
-        action="/api/v1/ssl_wireless/feedback"
-        endpoint="/api/v1/ssl_wireless/initiate/<%= payment_method.id %>"> Pay Now
-</button>
+<h1 class="text-center text-capitalize">Pay With Cards/Nagad/Bkash</h1>
+<div class="form-check text-center">
+  <p class="text-center">
+    <%= image_tag 'cards.jpg', width: '75%' %>
+  </p>
+  <input class="form-check-input" type="checkbox" value="false" id="readTNC">
+  <label class="form-check-label text-center" for="readTNC">
+    I have read the <a href="/legals/terms_and_condition" target="_blank"><u>terms and conditions</u></a>
+  </label>
+  <button class="text-center pay-with-sslw btn btn-outline-light btn-lg btn-primary" id="sslczPayBtn"
+          postdata=""
+          order="<%= @order.number %>"
+          action="/api/v1/ssl_wireless/feedback"
+          endpoint="/api/v1/ssl_wireless/initiate/<%= payment_method.id %>"> Pay with Debit/Credit Card/Bkash
+  </button>
+</div>

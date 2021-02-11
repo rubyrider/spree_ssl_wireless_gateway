@@ -1,7 +1,6 @@
 //require ./select_installment
 
 $(function () {
-    hideOtherButtons();
     controlPayNowButton();
     propagateInstallmentOptions();
 })
@@ -33,6 +32,8 @@ function disablePaymentInput(inputs) {
 }
 
 function enablePaymentInput(inputs) {
+    hideOtherButtons()
+    
     $.map(inputs, function (input) {
         $(input).attr('disabled', false)
     })

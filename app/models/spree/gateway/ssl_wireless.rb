@@ -1,13 +1,22 @@
 class ::Spree::Gateway::SslWireless < ::Spree::Gateway
   
+  MINIMUM_INSTALLMENT_PERIOD = 3
+  
   preference :merchant_id, :string
   preference :api_key, :string
   preference :product_category, :string
   preference :host, :string
   preference :server, :string, default: 'https://sandbox.sslcommerz.com'.freeze
+  preference :emi_enable, :boolean, default: false
+  preference :emi_maximum_installments, default: 6
+  preference :emi_minimum_amount, default: 5000
 
   def provider_class
     ::Spree::Gateway::SslWireless
+  end
+  
+  def installment_range
+    (MINIMUM_INSTALLMENT_PERIOD..preferences[:emi_maximum_installments].to_i).select {|i| i % MINIMUM_INSTALLMENT_PERIOD == 0 }
   end
   
   def method_type

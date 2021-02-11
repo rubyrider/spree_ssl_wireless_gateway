@@ -24,7 +24,6 @@
   </script>
 <% end %>
 
-<h1 class="text-center text-capitalize">Pay With Cards/Nagad/Bkash</h1>
 <div class="form-check text-center">
   <p class="text-center">
     <%= image_tag 'cards.jpg', width: '75%' %>
@@ -33,10 +32,33 @@
   <label class="form-check-label text-center" for="readTNC">
     I have read the <a href="/legals/terms_and_condition" target="_blank"><u>terms and conditions</u></a>
   </label>
-  <button class="text-center pay-with-sslw btn btn-outline-light btn-lg btn-primary" id="sslczPayBtn"
-          postdata=""
-          order="<%= @order.number %>"
-          action="/api/v1/ssl_wireless/feedback"
-          endpoint="/api/v1/ssl_wireless/initiate/<%= payment_method.id %>"> Pay with Debit/Credit Card/Bkash
-  </button>
+
+  <% if payment_method.preferences[:emi_enable].present? %>
+    <% if @order.total >= payment_method.preferences[:emi_minimum_amount].to_i %>
+      <div class="row">
+        <div class="col-12 text-center">
+          <h6>Congratulations! You are eligible for EMI, Enjoy our maximum <%= payment_method.preferences[:emi_maximum_installments] %>
+            months maximum installments at <span class="text-capitalize font-weight-bold">0% interest</span></h6>
+          <select id='select-installment' class="form-select pay-now-input form-control" aria-label="Default select example">
+            <option class="form-control" value="0" selected>Without Emei</option>
+            <% payment_method.installment_range.each do |installment_period| %>
+              <option class="form-control" value="<%= installment_period %>"><%= installment_period %> Months</option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="row">
+    <div class="col-12 text-center">
+      <br />
+      <button class="text-center pay-now-input pay-with-sslw btn btn-lg btn-primary" id="sslczPayBtn"
+              postdata
+              order="<%= @order.number %>"
+              action="/api/v1/ssl_wireless/feedback"
+              endpoint="/api/v1/ssl_wireless/initiate/<%= payment_method.id %>"> Pay Now
+      </button>
+    </div>
+  </div>
 </div>

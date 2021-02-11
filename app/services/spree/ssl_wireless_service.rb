@@ -2,9 +2,10 @@ module Spree
   class SslWirelessService
     attr_accessor :response
     
-    def easy_check_out_init(order_number, payment_method_id)
+    def easy_check_out_init(order_number, payment_method_id, emi = {})
+      @emi  = emi
       @payment_method = ::Spree::PaymentMethod.find(payment_method_id)
-      params          = PaymentProcessor.new(order_number, payment_method_id).as_json
+      params          = PaymentProcessor.new(order_number, payment_method_id, emi).as_json
       Rails.logger.debug "[Endpoint: #{__method__}]: #{build_endpoint('gwprocess/v4/api.php')}"
       Rails.logger.debug "[Params: #{__method__}]: #{params}"
       

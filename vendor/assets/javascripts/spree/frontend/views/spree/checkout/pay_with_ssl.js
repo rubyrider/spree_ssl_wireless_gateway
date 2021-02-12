@@ -1,6 +1,11 @@
 //require ./select_installment
 
-var ALL_CHECKOUT_SELECTORS = '.checkout-content-save-continue-button, .cart-checkout-btn, .product-added-modal-button, .add-to-cart-button'
+var ALL_CHECKOUT_SELECTORS = '' +
+    '.buy-now-button, ' +
+    '.checkout-content-save-continue-button, ' +
+    '.cart-checkout-btn, ' +
+    '.product-added-modal-button, ' +
+    '.add-to-cart-button'
 
 $(function () {
     controlPayNowButton();

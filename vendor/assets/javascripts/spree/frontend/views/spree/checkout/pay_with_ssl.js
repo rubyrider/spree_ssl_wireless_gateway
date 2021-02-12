@@ -1,5 +1,7 @@
 //require ./select_installment
 
+var ALL_CHECKOUT_SELECTORS = '.checkout-content-save-continue-button, .cart-checkout-btn, .product-added-modal-button, .add-to-cart-button'
+
 $(function () {
     controlPayNowButton();
     propagateInstallmentOptions();
@@ -71,7 +73,7 @@ function setInstallmentParams(value) {
 
 
 function startLoading() {
-    $('.checkout-content-save-continue-button, .cart-checkout-btn').on('click', function () {
+    $(ALL_CHECKOUT_SELECTORS).on('click', function () {
         $("div.spanner").addClass("show");
         $("div.overlay").addClass("show");
     })

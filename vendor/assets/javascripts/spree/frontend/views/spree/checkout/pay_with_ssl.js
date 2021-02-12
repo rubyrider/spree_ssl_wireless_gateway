@@ -3,6 +3,7 @@
 $(function () {
     controlPayNowButton();
     propagateInstallmentOptions();
+    startLoading()
 })
 
 function hideOtherButtons() {
@@ -69,4 +70,10 @@ function setInstallmentParams(value) {
 }
 
 
+function startLoading() {
+    $('.checkout-content-save-continue-button, .cart-checkout-btn').on('click', function () {
+        $("div.spanner").addClass("show");
+        $("div.overlay").addClass("show");
+    })
+}
 

@@ -37,7 +37,7 @@ class PaymentProcessor
         fail_url:            "#{@payment_method.preferences[:host]}/checkout/feedback/fail",
         cancel_url:          "#{@payment_method.preferences[:host]}/checkout/feedback/cancel",
         cus_name:            order&.bill_address&.full_name,
-        cus_email:           order.user.email,
+        cus_email:           order&.user&.email || order&.email,
         cus_add1:            order&.bill_address&.address1&.presence,
         cus_add2:            order&.bill_address&.address2&.presence,
         cus_state:           order&.bill_address&.state&.name&.presence,
